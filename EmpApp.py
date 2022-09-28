@@ -232,7 +232,7 @@ def SearchEmp():
 
 @app.route("/edit", methods=['GET', 'POST'])
 def editEmp():
-    emp_id = request.args['emp_id']
+    emp_id = request.form['emp_id']
     select_emp = "SELECT * FROM employee WHERE emp_id = %(emp_id)s"
     cursor = db_conn.cursor()
 
