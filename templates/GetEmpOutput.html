@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Employee Information</title>
+</head>
+<center>
+	<style>
+        body {
+			background-attachment:fixed;
+            background-image: url({{url_for('static',filename='assets/images/background.png')
+        }})
+        }
+        div {
+            background-color: aliceblue;
+            width: 600px;
+            border: 15px solid green;
+            padding: 50px;
+            margin: 20px;
+        }
+	</style>
+
+	<font color="black" size="5" style="font-family: avenir">
+		<body bgcolor="white">
+			<form action="/path" method="post" enctype="multipart/form-data">
+				<div>
+					<h1 style="color: RoyalBlue">Personal details</h1>
+					<img src="{{ image_url }}" width="400" height="600" /><br />
+					<h2>{{fname}} {{lname}} </h2>
+
+					</p>Employee ID:<br> {{ id }}  <br><br>
+
+					<input hidden="True" name="emp_id" value={{id}}>
+
+					First Name:<br> {{ fname }} <br><br>
+
+					Last Name:<br> {{ lname }} <br><br>
+
+					Department:<br> {{ department }} <br><br>
+
+					Job Title:<br> {{ job_title }} <br><br>
+
+					Primary Skills:<br> {{ pri_skill }} <br><br>
+
+					Location:<br> {{ location }} <br><br>
+
+					Salary(RM):<br> {{ salary }}<br><br>
+
+					<button type="submit" value="{{id}}" style="background: rgb(34, 151, 34); height: 45px; width: 200px; color:white; font:oblique; border-width: 0ch;cursor:pointer" formaction="/edit">Edit</button><br><br>
+					<button type="submit" style="background: grey ; height: 45px; width: 200px; color:white; font:oblique; border-width: 0ch;cursor:pointer" formaction="/GetEmp">Back</button>
+					<button name="cert_id" value="{{id}}" type="submit" style="background: royalblue ; height: 45px; width: 200px; color:white; font:oblique; border-width: 0ch;cursor:pointer" formaction="/viewCert">View Cert</button>
+				</div>
+			</form>
+
+
+		</body>
+
+	</font>
+</center>
+</html>

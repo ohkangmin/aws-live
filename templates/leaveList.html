@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- basic -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- mobile metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <meta content="text/html; charset=ISO-8859-1"
+http-equiv="content-type">
+    <!-- site metas -->
+    <title>HR Software</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- bootstrap css -->
+    <link href="{{ url_for('static',filename='assets/css/bootstrap.min.css') }}" rel="stylesheet">
+    <!-- style css -->
+    <link rel="stylesheet" href="{{ url_for('static',filename='assets/css/style.css') }}">
+    <!-- Responsive-->
+    <link rel="stylesheet" href="{{ url_for('static',filename='assets/css/responsive.css') }}">
+    <!-- fevicon -->
+    <link rel="icon" href="{{ url_for('static',filename='assets/images/fevicon.png') }}" type="image/gif" />
+    <!-- Scrollbar Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static',filename='assets/css/jquery.mCustomScrollbar.min.css') }}">
+    <!-- Tweaks for older IEs-->
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+</head>
+   <!-- body -->
+<body class="main-layout footer_to90 news_page">
+    <!-- loader  -->
+    <div class="loader_bg">
+        <div class="loader"><img src="{{ url_for('static',filename='assets/images/loading.gif') }}" alt="#" /></div>
+    </div>
+    <!-- end loader -->
+    <!-- header -->
+    <header>
+        <!-- header inner -->
+        <div class="header">
+            <div class="header_bottom">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8">
+                            <nav class="navigation navbar navbar-expand-md navbar-dark ">
+                                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+                                    <span class="navbar-toggler-icon"></span>
+                                </button>
+                                <div class="collapse navbar-collapse" id="navbarsExample04">
+                                    <ul class="navbar-nav mr-auto">
+                                        <li class="nav-item active">
+                                            <a class="nav-link" href="/mainpage">Home</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="/database">Employee Database</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="/attendance">Attendance System</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="/training">Training Courses</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="/aboutus">About Us</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- end header inner -->
+    <!-- end header -->
+    <div class="blue_bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="titlepage">
+                        <h2>Leave List</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+    <br />
+    <!--display pending leave application-->
+    <br />
+    <style>
+        button {
+            width: 70%;
+            background-size: 50px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+    <h1 style="text-align:center">List of Pending Leave</h1>
+    <form>
+        <table class="table table-hover" style="text-align:center">
+            <thead>
+                <tr>
+                    <th scope="col">Employee ID</th>
+                    <th scope="col">Employee Name</th>
+                    <th scope="col">Department</th>
+                    <th scope="col">Leave Type</th>
+                    <th scope="col">Start Date</th>
+                    <th scope="col">End Date</th>
+                    <th scope="col">Approve</th>
+                    <th scope="col">Reject</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in data %}
+                <tr>
+                    <td>{{row[0]}}</td>
+                    <td>{{row[1]}}</td>
+                    <td>{{row[2]}}</td>
+                    <td>{{row[3]}}</td>
+                    <td>{{row[4]}}</td>
+                    <td>{{row[5]}}</td>
+                    <td><button type="submit" value="{{row[1]}}" name="approve_id" style="background-color:lawngreen" formaction="/ApproveLeave">Approve</button></td>
+                    <td><button type="submit" value="{{row[1]}}" name="reject_id" style="background-color:firebrick;color:white" formaction="/RejectLeave">Reject</button></td>
+                </tr>
+                {% endfor %}
+
+            </tbody>
+        </table>
+    </form>
+
+    <br />
+    <br />
+    <h1 style="text-align:center">List of Approved Leave</h1>
+    <table class="table table-hover" style="text-align:center">
+        <thead>
+            <tr>
+                <th scope="col">Employee ID</th>
+                <th scope="col">Employee Name</th>
+                <th scope="col">Department</th>
+                <th scope="col">Leave Type</th>
+                <th scope="col">Start Date</th>
+                <th scope="col">End Date</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            {% for approval in approveData %}
+            <tr>
+                <td>{{approval[0]}}</td>
+                <td>{{approval[1]}}</td>
+                <td>{{approval[2]}}</td>
+                <td>{{approval[3]}}</td>
+                <td>{{approval[4]}}</td>
+                <td>{{approval[5]}}</td>
+            </tr>
+            {% endfor %}
+
+        </tbody>
+    </table>
+
+    <br />
+    <br />
+    <h1 style="text-align:center">List of Rejected Leave</h1>
+    <table class="table table-hover" style="text-align:center">
+        <thead>
+            <tr>
+                <th scope="col">Employee ID</th>
+                <th scope="col">Employee Name</th>
+                <th scope="col">Department</th>
+                <th scope="col">Leave Type</th>
+                <th scope="col">Start Date</th>
+                <th scope="col">End Date</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            {% for reject in rejectData %}
+            <tr>
+                <td>{{reject[0]}}</td>
+                <td>{{reject[1]}}</td>
+                <td>{{reject[2]}}</td>
+                <td>{{reject[3]}}</td>
+                <td>{{reject[4]}}</td>
+                <td>{{reject[5]}}</td>
+            </tr>
+            {% endfor %}
+
+        </tbody>
+    </table>
+
+
+
+
+    <!-- end news section -->
+    <!-- six_box section -->
+    <div class="six_box">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-2 col-sm-4 pa_left">
+                    <div class="six_probpx yellow_bg">
+                        <i><img src="{{ url_for('static',filename='assets/images/add.png')}}" alt="#" style="width: 70%" /></i>
+                        <span>Add Employee</span>
+                    </div>
+                </div>
+                <div class="col-md-2 col-sm-4 pa_left">
+                    <div class="six_probpx bluedark_bg">
+                        <i><img src="{{ url_for('static',filename='assets/images/search.png')}}" alt="#" style="width: 70%" /></i>
+                        <span>Search Employee</span>
+                    </div>
+                </div>
+                <div class="col-md-2 col-sm-4 pa_left">
+                    <div class="six_probpx yellow_bg">
+                        <i><img src="{{ url_for('static',filename='assets/images/clock in.png')}}" alt="#" style="width: 70%" /></i>
+                        <span>Clock In</span>
+                    </div>
+                </div>
+                <div class="col-md-2 col-sm-4 pa_left">
+                    <div class="six_probpx bluedark_bg">
+                        <i><img src="{{ url_for('static',filename='assets/images/clock out.png')}}" alt="#" style="width: 70%" /></i>
+                        <span>Clock Out</span>
+                    </div>
+                </div>
+                <div class="col-md-2 col-sm-4 pa_left">
+                    <div class="six_probpx yellow_bg">
+                        <i><img src="{{ url_for('static',filename='assets/images/performance.png')}}" alt="#" style="width: 70%" /></i>
+                        <span>Performance</span>
+                    </div>
+                </div>
+                <div class="col-md-2 col-sm-4 pa_left">
+                    <div class="six_probpx bluedark_bg">
+                        <i><img src="{{ url_for('static',filename='assets/images/payroll.png')}}" alt="#" style="width: 70%" /></i>
+                        <span>Payroll</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static',filename='assets/js/jquery.min.js')}}"></script>
+    <script src="{{ url_for('static',filename='assets/js/popper.min.js')}}"></script>
+    <script src="{{ url_for('static',filename='assets/js/bootstrap.bundle.min.js')}}"></script>
+    <script src="{{ url_for('static',filename='assets/js/jquery-3.0.0.min.js')}}"></script>
+    <!-- sidebar -->
+    <script src="{{ url_for('static',filename='assets/js/jquery.mCustomScrollbar.concat.min.js')}}"></script>
+    <script src="{{ url_for('static',filename='assets/js/custom.js')}}"></script>
+</body>
+</html>
+

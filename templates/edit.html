@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Employee Information</title>
+</head>
+<center>
+	<style>
+        body {
+			background-attachment:fixed;
+            background-image: url({{url_for('static',filename='assets/images/background.png')
+        }})
+        }
+        div {
+            background-color: aliceblue;
+            width: 600px;
+            border: 15px solid green;
+            padding: 50px;
+            margin: 20px;
+        }
+	</style>
+
+	<font color="black" size="5" style="font-family: avenir">
+		<body bgcolor="white">
+			<form action="/path" method="post" enctype="multipart/form-data">
+
+				<div>
+					<h1 style="color: RoyalBlue">Personal details</h1>
+					<img src="{{ image_url }}" width="400" height="600" /><br />
+					<h2>{{fname}} {{lname}} </h2>
+
+					</p>Employee ID:<br> {{ id }}  <br><br>
+
+					First Name:<br> {{ fname }} <br><br>
+
+					Last Name:<br> {{ lname }} <br><br><p>
+
+	Department <br> <input style="height:25px;font-size:14pt;color:black;" type="text" name="department"><br><br>
+
+	Job Title:<br> <input style="height:25px;font-size:14pt;color:black;" type="text" name="job_title"><br><br>
+
+	Primary Skills:<br> <input style="height:25px;font-size:14pt;color:black;" type="text" name="pri_skill"><br><br>
+
+	Location:<br> <input style="height:25px;font-size:14pt;color:black;" type="text" name="location"><br><br>
+
+	Salary(RM):<br> <input style="height:25px;font-size:14pt;color:black;" type="number" name="salary"><br><br>
+
+	Cert: <br> <input style="height:25px;font-size:14pt;color:black;" type="file" name="emp_cert_file"> <br><br>
+	<button type="submit" style="background: grey ; height: 45px; width: 200px; color:white; font:oblique; border-width: 0ch;cursor:pointer" formaction="/GetEmp">Back</button>
+	<button name="emp_id" value="{{id}}" type="submit" style="background: rgb(34, 151, 34); height: 45px; width: 200px; color:white; font:oblique; border-width: 0ch;cursor:pointer" formaction="/edited">Edit</button><br><br>
+</div>
+			</form>
+
+		</body>
+
+	</font>
+</center>
+</html>

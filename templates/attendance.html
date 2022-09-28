@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>HR Software</title>
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.css'>
+<link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.0.12/css/all.css'><link rel="stylesheet" href="{{ url_for('static',filename='assets/css/attendancestyle.css')}}">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<div class="container">
+    <br />
+    <br />
+  <h1>punch<i class="fas fa-user-clock"></i>time</h1>
+  
+  <div class="row col-12">
+    
+    <div id="buttons" class="col-6">
+      <button id="punch" class="btn btn-success col-12">
+          <div id="now">
+              <span id="date"></span><br><span></span>
+              <script>
+                  var today = new Date();
+                  var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+                  var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+                  document.getElementById("time").innerHTML = time;
+                  document.getElementById("date").innerHTML = date;
+              </script>
+          </div>
+        <div id="punch-in">
+          <i class="fas fa-angle-right"></i>
+          <i class="fas fa-clock"></i>
+          <div>Punch In</div>
+        </div>
+        <div id="punch-out">
+          <i class="fas fa-clock"></i>
+          <i class="fas fa-angle-right"></i>
+          <div>Punch Out</div>
+        </div>
+        <div id="bye">
+          <i class="fas fa-clock"></i>
+          <div>Bye!</div>
+        </div>
+        </button>
+      <button id="undo" class="btn btn-default col-12"><i class="fas fa-undo"></i>Undo Last Punch</button>  
+      <button id="reset" class="btn btn-warning col-12"><i class="fas fa-redo"></i>Reset</button>  
+    </div>
+    
+    <div id="display" class="col-6">
+      <table class="col-12">
+        <tr>
+          <th>Start Shift</th>
+          <td></td>
+        </tr>
+        <tr>
+          <th>Lunch Out</th>
+          <td></td>
+        </tr>
+        <tr>
+          <th>Lunch In</th>
+          <td></td>
+        </tr>
+        <tr>
+          <th>End Shift</th>
+          <td></td>
+        </tr>
+      </table>
+    </div>
+    
+    
+  </div>
+  
+</div>
+<!-- partial -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script><script  src="{{ url_for('static',filename='assets/js/script.js')}}"></script>
+
+</body>
+</html>
